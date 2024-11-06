@@ -1,0 +1,34 @@
+name: CI Pipeline
+
+# Ejecutar cuando hay un push o pull request a la rama main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    # Define en qué sistema operativo se ejecutará el flujo de trabajo
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Clonar el código del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Paso 2: Configurar Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Puedes especificar la versión de Node.js que prefieras
+
+      # Paso 3: Instalar dependencias (si hubiera un archivo package.json)
+      - name: Install dependencies
+        run: npm install || echo "No dependencies to install"
+
+      # Paso 4: Ejecutar el código
+      - name: Run Hello World script
+        run: node app.js
