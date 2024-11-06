@@ -13,32 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Clonar el código del repositorio
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Paso 2: Configurar Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      # Paso 3: Instalar dependencias (si hay un archivo package.json)
       - name: Install dependencies
         run: npm install
 
-      # Paso 4: Ejecutar el script "Hola, Mundo"
       - name: Run Hello World script
         run: node app.js
 
-      # Paso 5: Ejecutar las pruebas con Jest
       - name: Run tests
         run: npx jest
 
-# Paso 6: Ejecutar pruebas de regresión simuladas
-- name: Run regression tests
-  run: echo "Running regression tests..." && npx jest
-  # Paso 7: Simular pruebas de rendimiento
-- name: Run performance tests
-  run: echo "Simulating performance tests... Response time: 200ms, CPU usage: 20%"
+      - name: Run regression tests
+        run: echo "Running regression tests..." && npx jest
 
+      - name: Run performance tests
+        run: echo "Simulating performance tests... Response time: 200ms, CPU usage: 20%"
