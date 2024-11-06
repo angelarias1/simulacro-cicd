@@ -31,7 +31,11 @@ jobs:
         run: npx jest
 
       - name: Run regression tests
-        run: echo "Running regression tests..." && npx jest
+        run: |
+          echo "Running regression tests..."
+          npx jest
 
       - name: Run performance tests
-        run: echo 'Simulating performance tests... Response time: 200ms, CPU usage: 20%'
+        run: |
+          echo "Simulating performance tests..."
+          echo "Response time: 200ms, CPU usage: 20%"
