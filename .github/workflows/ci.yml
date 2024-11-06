@@ -1,6 +1,5 @@
 name: CI Pipeline
 
-# Ejecutar cuando hay un push o pull request a la rama main
 on:
   push:
     branches:
@@ -11,7 +10,6 @@ on:
 
 jobs:
   build:
-    # Define en qué sistema operativo se ejecutará el flujo de trabajo
     runs-on: ubuntu-latest
 
     steps:
@@ -23,12 +21,24 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Puedes especificar la versión de Node.js que prefieras
+          node-version: '14'
 
-      # Paso 3: Instalar dependencias (si hubiera un archivo package.json)
+      # Paso 3: Instalar dependencias (si hay un archivo package.json)
       - name: Install dependencies
-        run: npm install || echo "No dependencies to install"
+        run: npm install
 
-      # Paso 4: Ejecutar el código
+      # Paso 4: Ejecutar el script "Hola, Mundo"
       - name: Run Hello World script
         run: node app.js
+
+      # Paso 5: Ejecutar las pruebas con Jest
+      - name: Run tests
+        run: npx jest
+
+# Paso 6: Ejecutar pruebas de regresión simuladas
+- name: Run regression tests
+  run: echo "Running regression tests..." && npx jest
+  # Paso 7: Simular pruebas de rendimiento
+- name: Run performance tests
+  run: echo "Simulating performance tests... Response time: 200ms, CPU usage: 20%"
+
